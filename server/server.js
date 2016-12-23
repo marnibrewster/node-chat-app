@@ -13,10 +13,25 @@ app.use(express.static(publicPath))
 
 io.on('connection', (socket) =>{
   console.log('new client connected');
-
-  socket.on('disconnect', (socket) => {
-    console.log('user disconnected from server')
-  });
+    socket.emit('newMessage', {
+      from: "mjb",
+      text: "message from server",
+      createdAt: 233232
+    });
+    socket.on('createMessage', (message) => {
+      console.log('create message', message);
+    })
+  // socket.on('disconnect', (socket) => {
+  //   console.log('user disconnected from server')
+  // });
+  // socket.on('createEmail', (newEmail) => {
+  //   console.log('create email', newEmail);
+  // });
+  // socket.emit('newEmail', {
+  //   from: 'marni@example.com',
+  //   text: 'hi how are you?',
+  //   createdAt: 2332
+  // });
 });
 
 server.listen(port, () => {
