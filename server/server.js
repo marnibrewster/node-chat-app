@@ -21,9 +21,10 @@ io.on('connection', (socket) =>{
     // });
     socket.emit('newMessage', generateMessage('Admin', 'Welcome to the Chat App'));
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'New User Joined'));
-    socket.on('createMessage', (message) => {
+    socket.on('createMessage', (message, callback) => {
       console.log('create message', message);
       io.emit('newMessage', generateMessage(message.from, message.text));
+      callback('this is a callback string');
       // socket.broadcast.emit('newMessage', {
       //     from: message.from,
       //     text: message.text,
