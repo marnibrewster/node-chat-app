@@ -14,11 +14,6 @@ app.use(express.static(publicPath))
 
 io.on('connection', (socket) =>{
   console.log('new user connected');
-    // socket.emit('newMessage', {
-    //   from: "mjb",
-    //   text: "message from server",
-    //   createdAt: 233232
-    // });
     socket.emit('newMessage', generateMessage('Admin', 'Welcome to the Chat App'));
 
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'New User Joined'));
@@ -28,12 +23,13 @@ io.on('connection', (socket) =>{
       io.emit('newMessage', generateMessage(message.from, message.text));
       callback('this is a callback string');
     });
-  // socket.on('disconnect', (socket) => {
-  //   console.log('user disconnected from server')
-  // });
-  // socket.on('createEmail', (newEmail) => {
-  //   console.log('create email', newEmail);
-  // });
+  socket.on('createLocationMessage', (coords) => {
+    io.emit('newMessage', generateMessage('Admin', `${coords.latitude}, ${coords.longitude}`));
+  });
+  socket.on('disconnect', (socket) => {
+    console.log('user disconnected from server')
+  });
+
 });
 
 server.listen(port, () => {
