@@ -26,7 +26,7 @@ class Users {
   }
   getUserList (room) {
     //returns array of names
-    var users = this.users.filter((user) => user.room === room);
+    var users = this.users.filter((user) => user.room.toLowerCase() === room.toLowerCase());
     var namesArray = users.map((user) => user.name);
 
     return namesArray;

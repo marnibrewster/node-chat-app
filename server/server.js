@@ -23,8 +23,11 @@ io.on('connection', (socket) => {
     if (!isRealString(params.name) || !isRealString(params.room)) {
       return callback('Name and room name are required.');
     }
+    //make case-insensitive
+    var room = params.room;
+    room = room.toLowerCase();
 
-    socket.join(params.room);
+    socket.join(room);
     users.removeUser(socket.id);
     users.addUser(socket.id, params.name, params.room);
     io.to(params.room).emit('updateUserList', users.getUserList(params.room));
