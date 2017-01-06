@@ -8,11 +8,14 @@ class Users {
   constructor () {
     this.users = [];
   }
-  // isUniqueUser(id, name, room) {
-  //   var user = {id, name, room};
-  //   var count = this.users.filter(function(user){ return user.name === name});
-  //   return count > 1;
-  // }
+
+  isUnique (name, room){
+    name = name.toLowerCase();
+
+    this.users = this.users.filter((user) => user.name === name && user.room === room);
+    //want it to return true if
+    return this.users.length === 0;
+  }
   addUser (id, name, room) {
     name = name.toLowerCase();
     var user = {id, name, room};

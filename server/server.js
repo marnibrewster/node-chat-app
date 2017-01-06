@@ -26,14 +26,14 @@ io.on('connection', (socket) => {
     //make case-insensitive
     var room = params.room;
     room = room.toLowerCase();
+
+    var name = params.name;
+    if(!users.isUnique(name, room)){
+      return callback('Must have unique name');
+    }
     socket.join(room);
     users.removeUser(socket.id);
-    //check to see if user already exists in room (case insensitive)
-    var name = params.name;
-    name = name.toLowerCase();
-    //if(users.isUniqueUser(name)){
-      users.addUser(socket.id, name, params.room);
-    //}
+    users.addUser(socket.id, name, params.room);
     io.to(params.room).emit('updateUserList', users.getUserList(params.room));
 
     socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
