@@ -26,10 +26,12 @@ io.on('connection', (socket) => {
     //make case-insensitive
     var room = params.room;
     room = room.toLowerCase();
-
     socket.join(room);
     users.removeUser(socket.id);
-    users.addUser(socket.id, params.name, params.room);
+    //check to see if user already exists in room (case insensitive)
+    var name = params.name;
+    name = name.toLowerCase();
+    users.addUser(socket.id, name, params.room);
     io.to(params.room).emit('updateUserList', users.getUserList(params.room));
 
     socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
