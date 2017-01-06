@@ -31,7 +31,9 @@ io.on('connection', (socket) => {
     //check to see if user already exists in room (case insensitive)
     var name = params.name;
     name = name.toLowerCase();
-    users.addUser(socket.id, name, params.room);
+    //if(users.isUniqueUser(name)){
+      users.addUser(socket.id, name, params.room);
+    //}
     io.to(params.room).emit('updateUserList', users.getUserList(params.room));
 
     socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
