@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Join | ChatApp</title>
+    <title>Join | Marni's ChatApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="/css/styles.css">
   </head>
@@ -19,12 +19,25 @@
         </div>
         <div class="form-field">
           <label>Room name</label>
-          <input type="text" name="room"/>
+          <!-- <input type="text" name="room"/> -->
+          <select name="room">
+           <option value="volvo" >Volvo</option>
+           <option value="saab">Saab</option>
+           <option value="fiat">Fiat</option>
+           <option value="audi">Audi</option>
+         </select>
         </div>
         <div class="form-field">
           <button>Join</button>
         </div>
       </form>
     </div>
+    <script id="room-template" type="text/template">
+      <li class="room">
+        <div class="room__name">
+          <p>{{roomName}}</p>
+        </div>
+      </li>
+    </script>
   </body>
 </html>
