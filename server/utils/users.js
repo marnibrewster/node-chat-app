@@ -9,13 +9,13 @@ class Users {
     this.users = [];
   }
 
-  isUnique (name, room){
-    name = name.toLowerCase();
-
-    this.users = this.users.filter((user) => user.name === name && user.room === room);
-    //want it to return true if
-    return this.users.length === 0;
-  }
+  // isUnique (name, room){
+  //   name = name.toLowerCase();
+  //   this.users = this.users.filter((user) => user.name === name && user.room === room);
+  //   //want it to return true if
+  //
+  //   return this.users.length === 0;
+  // }
   addUser (id, name, room) {
     name = name.toLowerCase();
     var user = {id, name, room};
@@ -40,6 +40,8 @@ class Users {
 
     return namesArray;
   }
+
+
 }
 
 module.exports = {Users};

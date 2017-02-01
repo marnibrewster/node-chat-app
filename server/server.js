@@ -4,8 +4,9 @@ const express = require('express');
 const socketIO = require('socket.io');
 
 const {generateMessage, generateLocationMessage} = require('./utils/message');
-const {isRealString} = require('./utils/validation');
+const {isRealString, isUnique} = require('./utils/validation');
 const {Users} = require('./utils/users');
+const {Rooms} = require('./utils/rooms');
 
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
@@ -13,33 +14,43 @@ var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
 var users = new Users();
+var rooms = new Rooms();
+var jQuery = require('../public/js/libs/jquery-3.1.0.min.js');
 
 app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
   console.log('New user connected');
+  // //socket.on('loadRooms', ())
+  //   var roomsList = io.sockets.adapter.rooms;
+  //   var roomsOpen = rooms.findRooms(roomsList);
 
   socket.on('join', (params, callback) => {
     if (!isRealString(params.name) || !isRealString(params.room)) {
       return callback('Name and room name are required.');
+    }
+    if(!users.isUnique(params.name, params.room)){
+      return callback('Must have unique name');
     }
     //make case-insensitive
     var room = params.room;
     room = room.toLowerCase();
 
     var name = params.name;
-    if(!users.isUnique(name, room)){
-      return callback('Must have unique name');
-    }
+
     socket.join(room);
+
     users.removeUser(socket.id);
+
     users.addUser(socket.id, name, params.room);
+
     io.to(params.room).emit('updateUserList', users.getUserList(params.room));
 
     socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
     socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `${params.name} has joined.`));
     callback();
   });
+
 
   socket.on('createMessage', (message, callback) => {
     var user = users.getUser(socket.id);

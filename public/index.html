@@ -20,24 +20,21 @@
         <div class="form-field">
           <label>Room name</label>
           <!-- <input type="text" name="room"/> -->
-          <select name="room">
-           <option value="volvo" >Volvo</option>
-           <option value="saab">Saab</option>
-           <option value="fiat">Fiat</option>
-           <option value="audi">Audi</option>
-         </select>
+          <input type="text" name="room"/>
         </div>
+        <div id="roomName"></div>
         <div class="form-field">
           <button>Join</button>
         </div>
       </form>
     </div>
-    <script id="room-template" type="text/template">
+    <!-- <script id="room-template" type="text/template">
       <li class="room">
         <div class="room__name">
           <p>{{roomName}}</p>
         </div>
       </li>
-    </script>
+    </script> -->
+    <script src="/js/libs/jquery-3.1.0.min.js"></script>
   </body>
 </html>
