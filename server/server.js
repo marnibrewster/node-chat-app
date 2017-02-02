@@ -28,8 +28,7 @@ io.on('connection', (socket) => {
   socket.on('join', (params, callback) => {
     if (!isRealString(params.name) || !isRealString(params.room)) {
       return callback('Name and room name are required.');
-    }
-    if(!users.isUnique(params.name, params.room)){
+    } else if(!users.isUnique(params.name, params.room)){
       return callback('Must have unique name');
     }
     //make case-insensitive

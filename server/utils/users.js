@@ -9,13 +9,16 @@ class Users {
     this.users = [];
   }
 
-  // isUnique (name, room){
-  //   name = name.toLowerCase();
-  //   this.users = this.users.filter((user) => user.name === name && user.room === room);
-  //   //want it to return true if
-  //
-  //   return this.users.length === 0;
-  // }
+  isUnique (name, room){
+    name = name.toLowerCase();
+    var filteredUsers = this.users.filter((user) => user.name === name && user.room === room);
+    //want it to return true if
+    if(filteredUsers.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   addUser (id, name, room) {
     name = name.toLowerCase();
     var user = {id, name, room};
