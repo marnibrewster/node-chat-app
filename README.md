@@ -21,6 +21,9 @@ Run npm install in the terminal to download necessary packages:
 Run the server locally
 * $ node server/server.js
 Open the local version at http://localhost:3000
+Play!
+* Enter your name and create a room. Test by opening another window and creating another user. Usernames must be unique! Enter the same room and see the notifications for each user.
+Terminate local server when you're done! control + c 
 
 ## Why was this a good learning experience?
-I learned about sockets, what they do and why they are important for certain tasks. I learned how to use Mustache templates. I learned about server and client code. I learned how to push a project to Heroku. 
+I learned about sockets, what they do and why they are important for certain tasks. I learned how to use Mustache templates. I learned about server and client code. I learned how to push a project to Heroku.
