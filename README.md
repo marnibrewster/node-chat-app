@@ -3,7 +3,7 @@
 P2P Chat app created as part of [Andrew Mead's Complete Node Developer Course.](https://www.udemy.com/the-complete-nodejs-developer-course-2/learn/v4/)
 Utilizing socket.io, jquery, moment.js, and mustache, this app allows users to create a username and chat room name. They can then share that room name with whomever else, and carry on private or group chats.
 
-Running app can be viewed [here:](https://guarded-earth-85990.herokuapp.com/)
+[Running app can be viewed here](https://guarded-earth-85990.herokuapp.com/)
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for fun purposes.
