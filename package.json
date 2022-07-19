@@ -9,8 +9,7 @@
     "test-watch": "nodemon --exec 'npm test'"
   },
   "engines": {
-
-    "node": "6.11.1"
+    "node": "16.x"
   },
   "_comment": "6.4.0",
   "author": "",
